@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pokémon</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionInput)="filterPokemons()"
+    placeholder="Buscar Pokémon"
+  ></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let pokemon of filteredPokemons" [routerLink]="['/detalle', pokemon.name]">
+      <ion-thumbnail slot="start">
+        <img [src]="getImageUrl(pokemon.url)" />
+      </ion-thumbnail>
+      <ion-label>{{ pokemon.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

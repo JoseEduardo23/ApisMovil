@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pokemon?.name || 'Detalles' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!loading; else loadingTpl" class="ion-padding">
+  <ion-card *ngIf="pokemon" class="card">
+    <img [src]="getImageUrl()" alt="{{ pokemon.name }}" />
+    <ion-card-header>
+      <ion-card-title>{{ pokemon.name | uppercase }}</ion-card-title>
+      <ion-card-subtitle>Tipo(s): {{ getTypes() }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Altura:</strong> {{ pokemon.height }}</p>
+      <p><strong>Peso:</strong> {{ pokemon.weight }}</p>
+      <p><strong>Habilidades:</strong> {{ getAbilities() }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ng-template #loadingTpl>
+  <ion-spinner name="crescent"></ion-spinner>
+</ng-template>
